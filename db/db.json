@@ -1,39 +1,39 @@
 {
     "ingredientes": {
-      "paes": [
+      "massas": [
         {
           "id": 1,
-          "tipo": "Italiano Branco"
+          "tipo": "Farinha de trigo"
         },
         {
           "id": 2,
-          "tipo": "3 Queijos"
+          "tipo": "Massa de tapioca"
         },
         {
           "id": 3,
-          "tipo": "Parmesão e Orégano"
+          "tipo": "Macaxeira"
         },
         {
           "id": 4,
-          "tipo": "Integral"
+          "tipo": "Pao arabe"
         }
       ],
-      "carnes": [
+      "tamanhos": [
         {
           "id": 1,
-          "tipo": "Maminha"
+          "tipo": "Pequena"
         },
         {
           "id": 2,
-          "tipo": "Alcatra"
+          "tipo": "Media"
         },
         {
           "id": 3,
-          "tipo": "Picanha"
+          "tipo": "Grande"
         },
         {
           "id": 4,
-          "tipo": "Veggie burger"
+          "tipo": "Família"
         }
       ],
       "opcionais": [

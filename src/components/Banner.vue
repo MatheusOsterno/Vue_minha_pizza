@@ -1,6 +1,6 @@
 <template>
    <div id="main-banner">
-    <h1> Make Tour Pizza</h1>
+    <h1> Make Your Pizza</h1>
    </div>
 </template>
 
@@ -16,13 +16,19 @@ export default{
 
     #main-banner {
         background-image: url('../img/wallpaperpizza.jpg');
-        background-position: 0 250;
+        background-position: 200 -250;
         background-size: cover;
-        height: 500px;
+        height: 600px;
         display: flex;
         align-items: center;
-        justify-content: flex-start;
-
+        justify-content: flex-end;
     }
 
+    #main-banner h1 {
+        color: #fff;
+        text-align: center;
+        font-size: 60px;
+        background-color: #222;
+        padding: 20px 40px;
+    }
 </style>
