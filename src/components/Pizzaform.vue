@@ -1,44 +1,41 @@
 <template>
-    <p>Componente de mensagem</p>
+    <Message :msg="msg" v-show="msg" />
     <div>
-        <div id="pizza-form">
+        <form id="pizza-form" @submit="createPizza" >
             <div class="input-container">
                 <label for="nome">Nome do cliente: </label>
                 <input type="text" id="nome" name="name" v-model="nome" placeholder="Digite o seu nome">
             </div>
             <div class="input-container">
                 <label for="massa">Escolha o tamanho: </label>
-                <select name="pao" id="pao" v-model="pao">
+                <select name="pao" id="pao" v-model="tamanho">
                     <option value="">Selecione a tamanho</option>
-                    <option value="familia">Familia</option>
+                    <option :value="tamanho.tipo" v-for="tamanho in tamanhos" :key="tamanho.id">
+                        {{ tamanho.tipo }}
+                    </option>
                 </select>
             </div>
             <div class="input-container">
-                <label for="massa">Escolha o pão: </label>
-                <select name="pao" id="pao" v-model="pao">
+                <label for="massa">Escolha o massa: </label>
+                <select name="pao" id="pao" v-model="massa">
                     <option value="">Selecione a massa</option>
-                    <option value="farinha">Farinha de trigo</option>
+                    <option :value="massa.tipo" v-for="massa in massas" :key="massa.id">
+                        {{ massa.tipo }}
+                    </option>
                 </select>
             </div>
             <div id="opcionais-container" class="input-container">
                 <label id="opcionais-title" for="opcionais">Selecione os opcionais:</label>
-                <div class="checkbox-container">
-                    <input type="checkbox" name="opcionais" v-model="opcionais" value="salame">
-                    <span>salame</span>   
+                <div class="checkbox-container" v-for="opcional in opcionaisdata" :key="opcional.id">
+                    <input type="checkbox" name="opcionais" v-model="opcionais" :value="opcional.tipo">
+                    <span>{{ opcional.tipo }}</span> 
                 </div>
-                <div class="checkbox-container">
-                    <input type="checkbox" name="opcionais" v-model="opcionais" value="salame">
-                    <span>salame</span>   
-                </div>
-                <div class="checkbox-container">
-                    <input type="checkbox" name="opcionais" v-model="opcionais" value="salame">
-                    <span>salame</span>   
-                </div>
+
             </div>
             <div class="input-container">
                 <input type="submit" class="submit-btn" value="Criar minha pizza">
             </div>
-        </div>
+        </form>
     </div>
 </template>
 
@@ -54,7 +51,6 @@ export default {
             massa: null,
             tamanho: null,
             opcionais: [],
-            status: "Solicitado",
             msng: null,
         }
     },
@@ -63,7 +59,40 @@ export default {
             const req = await fetch("http://localhost:3000/ingredientes")
             const data = await req.json();
 
-            console.log(data);
+            this.massas = data.massas;
+            this.tamanhos = data.tamanhos;
+            this.opcionaisdata = data.opcionais
+        },
+        async createPizza(e) {
+            e.preventDefault();
+            const data = {
+                nome: this.nome,
+                massa: this.massa,
+                tamanho: this.tamanho,
+                opcionais: Array.from(this.opcionais),
+                status: "Solicitado",
+            }
+
+            const dataJson = JSON.stringify(data)    
+
+            const req = await fetch("http://localhost:3000/pizzas", {
+                method: "POST",
+                headers: { "Content-Type" : "application/json" },
+                body: dataJson
+            });
+            const res = await req.json()
+            console.log(res)
+
+            //criar mensagem
+            this.msg = "Pedido realizado com sucesso!"
+
+            //Limpar campo
+            this.nome = "";
+            this.massa = "";
+            this.tamanho= "";
+            this.opcionais= "";
+
+
         }
     },
     mounted() {
