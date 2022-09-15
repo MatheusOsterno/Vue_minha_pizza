@@ -1,5 +1,5 @@
 <template>
-    <Message :msg="msg" v-show="msg" />
+    <Mensagem :msg="msg" v-show="msg" />
     <div>
         <form id="pizza-form" @submit="createPizza" >
             <div class="input-container">
@@ -40,9 +40,10 @@
 </template>
 
 <script>
+import Mensagem from './Mensagem.vue';
 export default {
     name: "Pizzaform",
-    data(){
+    data() {
         return {
             massas: null,
             tamanhos: null,
@@ -52,16 +53,15 @@ export default {
             tamanho: null,
             opcionais: [],
             msng: null,
-        }
+        };
     },
     methods: {
         async getIngredientes() {
-            const req = await fetch("http://localhost:3000/ingredientes")
+            const req = await fetch("http://localhost:3000/ingredientes");
             const data = await req.json();
-
             this.massas = data.massas;
             this.tamanhos = data.tamanhos;
-            this.opcionaisdata = data.opcionais
+            this.opcionaisdata = data.opcionais;
         },
         async createPizza(e) {
             e.preventDefault();
@@ -71,33 +71,34 @@ export default {
                 tamanho: this.tamanho,
                 opcionais: Array.from(this.opcionais),
                 status: "Solicitado",
-            }
-
-            const dataJson = JSON.stringify(data)    
-
+            };
+            const dataJson = JSON.stringify(data);
             const req = await fetch("http://localhost:3000/pizzas", {
                 method: "POST",
-                headers: { "Content-Type" : "application/json" },
+                headers: { "Content-Type": "application/json" },
                 body: dataJson
             });
-            const res = await req.json()
-            console.log(res)
-
+            const res = await req.json();
+            console.log(res);
+            
             //criar mensagem
-            this.msg = "Pedido realizado com sucesso!"
+            this.msg = `Pedido de numero: ${res.id} realizado com sucesso!`;
+            
+            //Limpar mensagem
+            setTimeout(() => this.msg = "", 4000);
 
             //Limpar campo
             this.nome = "";
             this.massa = "";
-            this.tamanho= "";
-            this.opcionais= "";
-
-
+            this.tamanho = "";
+            this.opcionais = "";
         }
     },
     mounted() {
-        this.getIngredientes()
-    }
+        this.getIngredientes();
+    },
+    components: { 
+        Mensagem }
 }
 
 </script>
