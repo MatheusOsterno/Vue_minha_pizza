@@ -79,15 +79,11 @@
   ],
   "pizzas": [
     {
-      "nome": "Xtreme Gavião",
-      "massa": "Macaxeira",
-      "tamanho": "Família",
+      "nome": "Talita",
+      "massa": "Massa de tapioca",
+      "tamanho": "Media",
       "opcionais": [
         "Bacon",
-        "Cheddar",
-        "Tomate",
-        "Salame",
-        "Cebola roxa",
         "Pepino"
       ],
       "status": "Solicitado",
