@@ -1,19 +1,13 @@
-# minha_pizza
+## No projeto Make_Pizza
+E possivel montar sua pizza escolhendo seu:
+- Tamnaho
+- Massa
+- opcionais
 
-## Project setup
-```
-npm install
-```
+E efetuando o pedido vai para o banco de dados e na aba pedidos. Conseguimos ver o pedidoe dando para muda seu status de:
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- Solicitado
+- Em produção
+- Finalizado
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Aplicação feita para agilizar o comercio, dando suluçoes mais rapidas de pedidos.
