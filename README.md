@@ -11,3 +11,7 @@ E efetuando o pedido vai para o banco de dados e na aba pedidos. Conseguimos ver
 - Finalizado
 
 Aplicação feita para agilizar o comercio, dando suluçoes mais rapidas de pedidos.
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/109709293/191350464-1a6c2853-a723-4897-b957-c25f405f4b62.gif" width="700px">
+</div>
